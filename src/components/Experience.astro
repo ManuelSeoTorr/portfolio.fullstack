@@ -1,0 +1,38 @@
+---
+import ExperienceItem from "./ExperienceItem.astro"
+
+const EXPERIENCE =[
+    {
+        date:"Febrero 2024 - Actualidad",
+        title:"Henry asisstant",
+        description:"Facilitar la comunicación entre estudiantes e instructores, y supervisar el progreso académico. También resuelver problemas técnicos básicos y coordinar actividades grupales para fomentar la colaboración.",
+        link:"",
+        latest: true
+
+    },
+    {
+        date:"Diciembre 2023 - Actualidad",
+        title:"Entrenador IA para la generación de código",
+        description:`Entrenamiento de grandes modelos lingüísticos de Inteligencia Artificial (LLM), con el fin de ayudar a los modelos generativos de IA de a escribir mejore códigos.`,
+        link:"",
+        latest: false
+    },
+    {
+        date:"Febrero 2018 - Actualidad",
+        title:"Profesor particular",
+        description:`Apoyo escolar y preparación de ingreso a colegios secundarios. Especializado en: Matematicas, Tecnologia, Ingles y Fisica`,
+        link:"",
+        latest: false
+    }
+]
+---
+<ol class="relative border-s ml-4 border-indigo-800 dark:border-indigo-300">  
+    {
+        EXPERIENCE.map(experience =>(
+            <li class="mb-10 ms-6">
+                <ExperienceItem {...experience}/>
+            </li>
+        ))
+    }                
+</ol>
+

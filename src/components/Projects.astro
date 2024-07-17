@@ -1,0 +1,147 @@
+---
+import NextJsIcon from "./Icons/NextJsIcon.astro";
+import ReactIcon from "./Icons/ReactIcon.astro";
+import MongoDBIcon from "./Icons/MongoDBIcon.astro";
+import TailWindIcon from "./Icons/TailWindIcon.astro";
+import CloudinaryIcon from "./Icons/CloudinaryIcon.astro";
+import HTMLIcon from "./Icons/HTMLIcon.astro";
+import CSSIcon from "./Icons/CSSIcon.astro";
+import ExpressIcon from "./Icons/ExpressIcon.astro";
+import GithubIcon from "./Icons/GithubIcon.astro";
+import NodeJsIcon from "./Icons/NodeJsIcon.astro";
+import PostgreSqlIcon from "./Icons/PostgreSqlIcon.astro";
+import TypeScriptIcon from "./Icons/TypeScriptIcon.astro";
+import VercelIcon from "./Icons/VercelIcon.astro";
+import ReduxIcon from "./Icons/ReduxIcon.astro";
+import SequelizeIcon from "./Icons/SequelizeIcon.astro";
+import Pill from "../components/Pill.astro";
+import GODIcon from "./Icons/GODIcon.astro";
+import FOODIcon from "./Icons/FOODIcon.astro";
+
+const TAGS = {
+  // FrontEnd
+  HTML: {
+    name: "HTML",
+    icon: HTMLIcon,
+  },
+  CSS: {
+    name: "CSS",
+    icon: CSSIcon,
+  },
+  REACT: {
+    name: "React",
+    icon: ReactIcon,
+  },
+  TAILWIND: {
+    name: "TailWind",
+    icon: TailWindIcon,
+  },
+  NEXT: {
+    name: "Next.Js",
+    icon: NextJsIcon,
+  },
+  TYPESCRIPT: {
+    name: "TypeScript",
+    icon: TypeScriptIcon,
+  },
+  VERCEL: {
+    name: "Vercel",
+    icon: VercelIcon,
+  },
+  REDUX: {
+    name: "Redux",
+    icon: ReduxIcon,
+  },
+  // BackEnd
+  NODEJS: {
+    name: "Node.js",
+    icon: NodeJsIcon,
+  },
+  EXPRESS: {
+    name: "Express",
+    icon: ExpressIcon,
+  },
+  SEQUELIZE: {
+    name: "Sequelize",
+    icon: SequelizeIcon,
+  },
+  // Base de Datos
+  POSTGRESQL: {
+    name: "PostgreSQL",
+    icon: PostgreSqlIcon,
+  },
+  MONGODB: {
+    name: "MongoDB",
+    icon: MongoDBIcon,
+  },
+  // Control de Versiones y Despliegue
+  GITHUB: {
+    name: "GitHub",
+    icon: GithubIcon,
+  },
+  // Otros
+  CLOUDINARY: {
+    name: "Cloudinary",
+    icon: CloudinaryIcon,
+  },
+};
+
+const PROJECTS = [
+  {
+    title: "Guardian of Decks (GOD)",
+    description: `Proyecto grupal donde trabaje con un equipo de 6 personas en el desarrollo de una SPA orientada al comercio de cartas coleccionables. En este proyecto mi participación fue orientada al desarrollo de los formularios y sus validaciones para un correcto manejo de la información y su posterior almacenamiento. Además construir la pasarela de pagos con MercadoPago y la notificación correspondiente vía mail utilizando Nodemailer.`,
+    link: "https://final-project-client-lime.vercel.app/",
+    icon: GODIcon,
+    github: "https://github.com/quirox93/final-project-client",
+    image: "/projects/GOD.webp",
+    tags: [TAGS.NEXT, TAGS.REACT, TAGS.MONGODB, TAGS.TAILWIND, TAGS.CLOUDINARY],
+  },
+  {
+    title: "FOOD-API",
+    description: `Proyecto individual que desarrolle desde la base de datos, el
+ backend y el frontend. Recetario virtual con buscador y filtros.`,
+    link: "https://pi-food-frontend-xp8c.vercel.app/",
+    icon: FOODIcon,
+    github: "https://github.com/ManuelSeoTorr/PI_FOOD_FRONTEND",
+    image: "/projects/FOOD-API.webp",
+    tags: [TAGS.NODEJS, TAGS.REACT, TAGS.EXPRESS, TAGS.CSS, TAGS.VERCEL],
+  },
+];
+---
+
+{
+  PROJECTS.map(
+    ({ title, description, link, github, image, tags, icon: ProjectIcon }) => (
+      <article>
+        <h3 class="flex items-center mb-1 py-2 text-lg font-semibold text-gray-900 dark:text-white">
+          <span class=" mr-2 flex items-center justify-center size-6 bg-indigo-100 rounded-full -start-3  dark:bg-indigo-900">
+            <ProjectIcon class="size-4 text-indigo-800 dark:text-indigo-300 " />
+          </span>
+          {title}
+        </h3>
+        <ul class="flex flex-row gap-x-4 mb-2">
+          {tags.map((tag) => (
+            <li>
+              <span class="flex rounded-full text-s gap-x-2 py-1 px-2 text-gray-900 dark:text-white">
+                <tag.icon class="size-5" />
+                {tag.name}
+              </span>
+            </li>
+          ))}
+        </ul>
+        <img class="rounded-3xl py-2" src={image} alt="" />
+        <article class="mb-4 text-base font-normal flex flex-col items-center text-gray-500 dark:text-gray-400 text-prety py-2 px-2 border border-gray-500 dark:border-gray-400 rounded-3xl">
+          {description}
+          <nav class="flex flex-wrap gap-4 mt-8">
+            <Pill href={link}>
+              <ProjectIcon class="size-4 lg:size-6" /> Ver proyecto
+            </Pill>
+            <Pill href={github}>
+              <GithubIcon class="size-4 lg:size-6" /> Ver GitHub
+            </Pill>
+          </nav>
+        </article>
+      </article>
+    )
+  )
+}

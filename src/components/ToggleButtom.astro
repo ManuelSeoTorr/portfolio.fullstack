@@ -1,0 +1,48 @@
+---
+import LightIcon from "./Icons/LightIcon.astro";
+import DarkIcon from "./Icons/DarkIcon.astro";
+---
+
+<button
+  onclick="toggleTheme()"
+  class="w-10 h-5 md:w-12 md:h-6 rounded-2xl bg-white flex items-center transition duration-300 focus:outline-none shadow"
+>
+  <div
+    id="switch-toggle"
+    class="size-6 md:size-7 rounded-full transition duration-500 transform bg-yellow-300 dark:bg-black -translate-x-2 dark:translate-x-full p-1 flex items-center text-gray-900 dark:text-white"
+  >
+    <LightIcon class="size-6 dark:hidden" />
+    <DarkIcon class="size-6 hidden dark:block" />
+  </div>
+</button>
+
+<script>
+
+
+  const switchToggle = document.querySelector(`#switch-toggle`);
+  const html = document.querySelector(`html`);
+  let isDarkMode = false;
+  const localDarkMode = JSON.parse(localStorage.getItem(`isDarkMode`))
+
+if (localDarkMode){
+    isDarkMode = localDarkMode
+    html.classList.add(`dark`)
+}else{
+    html.classList.remove(`dark`)
+}
+
+  window.toggleTheme = function() {
+    isDarkMode = !isDarkMode;
+    localStorage.setItem(`isDarkMode`,isDarkMode)
+    switchTheme();
+  }
+
+  function switchTheme() {
+    if (isDarkMode) {
+      html.classList.add(`dark`);;
+    } else {
+      html.classList.remove(`dark`);
+    }
+  }
+  switchTheme()
+</script>

@@ -1,0 +1,130 @@
+---
+import CSSIcon from "./Icons/CSSIcon.astro";
+import CloudinaryIcon from "./Icons/CloudinaryIcon.astro";
+import ExpressIcon from "./Icons/ExpressIcon.astro";
+import GithubIcon from "./Icons/GithubIcon.astro";
+import HTMLIcon from "./Icons/HTMLIcon.astro";
+import MongoDBIcon from "./Icons/MongoDBIcon.astro";
+import NextJsIcon from "./Icons/NextJsIcon.astro";
+import NodeJsIcon from "./Icons/NodeJsIcon.astro";
+import PostgreSqlIcon from "./Icons/PostgreSqlIcon.astro";
+import ReactIcon from "./Icons/ReactIcon.astro";
+import ReduxIcon from "./Icons/ReduxIcon.astro";
+import SequelizeIcon from "./Icons/SequelizeIcon.astro";
+import TailWindIcon from "./Icons/TailWindIcon.astro";
+import TypeScriptIcon from "./Icons/TypeScriptIcon.astro";
+import VercelIcon from "./Icons/VercelIcon.astro";
+
+const TAGS = {
+  // FrontEnd
+  HTML: {
+    name: "HTML",
+    icon: HTMLIcon,
+  },
+  CSS: {
+    name: "CSS",
+    icon: CSSIcon,
+  },
+  REACT: {
+    name: "React",
+    icon: ReactIcon,
+  },
+  TAILWIND: {
+    name: "TailWind",
+    icon: TailWindIcon,
+  },
+  NEXT: {
+    name: "Next.Js",
+    icon: NextJsIcon,
+  },
+  TYPESCRIPT: {
+    name: "TypeScript",
+    icon: TypeScriptIcon,
+  },
+  VERCEL: {
+    name: "Vercel",
+    icon: VercelIcon,
+  },
+  REDUX: {
+    name: "Redux",
+    icon: ReduxIcon,
+  },
+  // BackEnd
+  NODEJS: {
+    name: "Node.js",
+    icon: NodeJsIcon,
+  },
+  EXPRESS: {
+    name: "Express",
+    icon: ExpressIcon,
+  },
+  SEQUELIZE: {
+    name: "Sequelize",
+    icon: SequelizeIcon,
+  },
+  // Base de Datos
+  POSTGRESQL: {
+    name: "PostgreSQL",
+    icon: PostgreSqlIcon,
+  },
+  MONGODB: {
+    name: "MongoDB",
+    icon: MongoDBIcon,
+  },
+  // Control de Versiones y Despliegue
+  GITHUB: {
+    name: "GitHub",
+    icon: GithubIcon,
+  },
+  // Otros
+  CLOUDINARY: {
+    name: "Cloudinary",
+    icon: CloudinaryIcon,
+  },
+};
+
+const tagsArray = Object.values(TAGS);
+const duplicatedTagsArray = [...tagsArray, ...tagsArray];
+---
+
+<style>
+  .slider {
+    width: 75vw;
+    overflow: hidden;
+  }
+
+  .slider .slide-track {
+    display: flex;
+    animation: scroll 25s linear infinite;
+    width: calc(90px * 30);
+  }
+
+  .slider .slide {
+    width: 90px;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-90px * 15));
+    }
+  }
+</style>
+
+
+<div class="slider">
+  <div class="slide-track">
+    {
+      duplicatedTagsArray.map(({ icon: Icon }) => (
+        <div
+          class=" slide flex items-center justify-center carousel-wrapper"
+        >
+          <Icon class="size-20 bg-gray-400 dark:bg-gray-500 p-2 rounded-3xl m-2" />
+        </div>
+      ))
+    }
+  </div>
+</div>
+
