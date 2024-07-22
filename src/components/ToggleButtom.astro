@@ -4,7 +4,7 @@ import DarkIcon from "./Icons/DarkIcon.astro";
 ---
 
 <button
-  onclick="toggleTheme()"
+  onclick=`toggleTheme()`
   class="w-10 h-5 md:w-12 md:h-6 rounded-2xl bg-white flex items-center transition duration-300 focus:outline-none shadow"
 >
   <div
@@ -17,32 +17,53 @@ import DarkIcon from "./Icons/DarkIcon.astro";
 </button>
 
 <script>
-
-
-  const switchToggle = document.querySelector(`#switch-toggle`);
-  const html = document.querySelector(`html`);
-  let isDarkMode = false;
-  const localDarkMode = JSON.parse(localStorage.getItem(`isDarkMode`))
-
-if (localDarkMode){
-    isDarkMode = localDarkMode
-    html.classList.add(`dark`)
-}else{
-    html.classList.remove(`dark`)
-}
-
-  window.toggleTheme = function() {
-    isDarkMode = !isDarkMode;
-    localStorage.setItem(`isDarkMode`,isDarkMode)
-    switchTheme();
-  }
-
-  function switchTheme() {
-    if (isDarkMode) {
-      html.classList.add(`dark`);;
-    } else {
-      html.classList.remove(`dark`);
+  
+  declare global {
+      interface Window {
+        toggleTheme: () => void;
+      }
     }
-  }
-  switchTheme()
+    
+  document.addEventListener('DOMContentLoaded', function() {
+    const switchToggle = document.querySelector('#switch-toggle');
+    const html = document.querySelector('html');
+
+    if (!html) {
+      console.error('No se pudo encontrar el elemento HTML.');
+      return;
+    }
+
+    let isDarkMode = false;
+    const localDarkMode = localStorage.getItem('isDarkMode');
+
+    if (localDarkMode !== null) {
+      isDarkMode = JSON.parse(localDarkMode);
+      if (isDarkMode) {
+        html.classList.add('dark');
+      } else {
+        html.classList.remove('dark');
+      }
+    }
+
+    window.toggleTheme = function() {
+      isDarkMode = !isDarkMode;
+      localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
+      switchTheme();
+    }
+
+    function switchTheme() {
+      if (!html) {
+      console.error('No se pudo encontrar el elemento HTML.');
+      return;
+    }
+      if (isDarkMode) {
+        
+        html.classList.add('dark');
+      } else {
+        html.classList.remove('dark');
+      }
+    }
+
+    switchTheme();
+  });
 </script>
